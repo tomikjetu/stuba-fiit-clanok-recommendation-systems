@@ -1,0 +1,42 @@
+% Metódy inžinierskej práce
+
+\documentclass[10pt,twoside,english,a4paper]{coursepaper}
+
+\usepackage[english]{babel}
+%\usepackage[T1]{fontenc}
+\usepackage[IL2]{fontenc} % lepšia sadzba písmena Ľ než v T1
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{url} % príkaz \url na formátovanie URL
+\usepackage{hyperref} % odkazy v texte budú aktívne (pri niektorých triedach dokumentov spôsobuje posun textu)
+
+\usepackage{cite}
+%\usepackage{times}
+
+\pagestyle{headings}
+
+\title{Comparison of Deep Learning Algorithms in Image Recommendation Systems\thanks{Semestrálny projekt v predmete Metódy inžinierskej práce, ak. rok 2024/25, vedenie: Pavol Baťalík}} 
+
+\author{Tomáš Kordoš\\[2pt]
+	{\small Slovenská technická univerzita v Bratislave}\\
+	{\small Fakulta informatiky a informačných technológií}\\
+	{\small \texttt{xkordost@stuba.sk}}
+	}
+
+\date{\small 23. septembra 2024}
+
+\begin{document}
+
+\maketitle
+
+\input{abstract}
+\input{introduciton}
+\input{applications}
+\input{cnn}
+\input{future}
+\input{conclusion}
+
+
+\bibliography{literatura}
+\bibliographystyle{abbrv} % prípadne alpha, abbrv alebo hociktorý iný
+\end{document}
