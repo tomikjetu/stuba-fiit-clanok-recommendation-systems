@@ -15,17 +15,15 @@ a dense vector.  \cite{10.1145/3038912.3052569} \cite{DBLP:journals/corr/abs-170
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\linewidth]{Images/neural-network.png}
-    \caption{Typical Neural Network \cite{GAO2020409}}
+    \caption{Hidden Layers in A Typical Neural Network \cite{GAO2020409}}
     \label{fig:collaborative-filtering-diagram}
 \end{figure}
 
-Between the input and the output of a neural network are layers, each of the layers has a certain amount of neurons. \cite{GAO2020409} The value of the output is calculated from adding weighted values of the previous layer. The same applies for every node of hidden layers. The value of a node can be calculated with following formula. Where Xij is a value previous node and Wij weight associated with it
+Between the input and the output of a neural network are layers, each of the layers has a certain amount of neurons. \cite{GAO2020409} The value of the output is calculated from adding weighted values of the previous layer. The same applies for every node of hidden layers. The value of a node $y$ can be calculated with following formula. \cite{9784987} 
 
-\begin{comment}
-    get the real formulla and get make indexes in the text.
-\end{comment}
+\[ y = b + \sum_{i=1}^{n} x_i w_i  \]\
 
-\[ \sum x * w \]
+Where $x_i$ is a value previous node and $w_i$ weight associated with it. We calculate sum of weighted values from every single node from previous layer. In the training process some nodes weights will become zero, therefore some nodes can be switched off. Additionally we can introduce a bias $b$ to reduce the error, because it's not affected by the weights. 
 
 \begin{comment}
     $\begin{bmatrix}
@@ -33,6 +31,8 @@ Between the input and the output of a neural network are layers, each of the lay
     a & b & c
     \end{bmatrix} $ is a matrix
 \end{comment}
+
+\subsection{Embedding}
 
 \subsection{Cold Start}\label{cold-start}
 
@@ -43,7 +43,6 @@ An option for creating embeddings of new posts would be analyzing the content fe
 To improve the precision of recommendation of new items, here are a few proposed algorithms. 
 
 \begin{comment}
-\noindent\rule{2cm}{0.4pt}
 
 aTwo tower neural network architecture 
 User embedding
@@ -53,10 +52,10 @@ normalize vector
 dot product of post and user vector
 pre trained embeddings
 
-\noindent\rule{2cm}{0.4pt}
 \end{comment}
 
 \section{Convolutional Neural Networks}\label{cnn}
+Basic Neural Network Concepts apply. \ref{nn} 
 
 Most large corporations remain closed-source, keeping competition on the internet. With a few exceptions, with the the recent change of X (Twitter) going open-source. The next following subsections will explain some of the popular open-source image recognition neural networks and how it works in general.
 
