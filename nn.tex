@@ -12,6 +12,21 @@ Above the input layer is the embedding layer; it is a fully
 connected layer that projects the sparse representation to
 a dense vector.  \cite{10.1145/3038912.3052569} \cite{DBLP:journals/corr/abs-1708-05027} To calculate the output of each tower, we use a neural network. A dot or cosine product is then calculated from the outputs of both neural networks.
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{Images/neural-network.png}
+    \caption{Typical Neural Network \cite{GAO2020409}}
+    \label{fig:collaborative-filtering-diagram}
+\end{figure}
+
+Between the input and the output of a neural network are layers, each of the layers has a certain amount of neurons. \cite{GAO2020409} The value of the output is calculated from adding weighted values of the previous layer. The same applies for every node of hidden layers. The value of a node can be calculated with following formula. Where Xij is a value previous node and Wij weight associated with it
+
+\begin{comment}
+    get the real formulla and get make indexes in the text.
+\end{comment}
+
+\[ \sum x * w \]
+
 \begin{comment}
     $\begin{bmatrix}
     1 & 2 & 3\\
