@@ -64,6 +64,16 @@ Basic Neural Network Concepts apply. \ref{nn} Instead of an input vector, now we
     \label{fig:collaborative-filtering-diagram}
 \end{figure}
 
+The difference between one dimensional neural networks and 2D matrix neural networks is that we can visualise each layer or kernel as an image. Thus we can understand simple convolutional networks better. Some layers are perceived as 3D because of the color depth available.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{Images/kernels.png}
+    \caption{Kernels learned from AlexNet's first convolutional layer.   \cite{shehata2016using}}
+    \label{fig:collaborative-filtering-diagram}
+\end{figure}
+
+The final output layer is a vector with probabilities, every value represents propability of the image being classified in a specific class (eg. cat, dog, bird, etc.)
 
 
 
