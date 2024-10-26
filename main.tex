@@ -8,7 +8,7 @@
 
 \setbeamercovered{transparent}
 
-\usepackage[slovak]{babel}
+\usepackage[english]{babel}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{url}
@@ -60,7 +60,6 @@
 }
 
 
-
 \author{Tomáš Kordoš}
 %\url{www.fiit.stuba.sk/~vranic}, \url{vranic@fiit.stuba.sk}}
 %{\tiny \url{www.fiit.stuba.sk/~vranic}, \url{vranic@fiit.stuba.sk}}
@@ -84,7 +83,7 @@
 
 
 \begin{frame}[fragile=singleslide]\frametitle{Abstract}
-GET IT IN HERE
+Imagine a computer, that looks at an image and can tell if you'll like it. That's what Convolutional Networks with Two Towers Neural Network achieve. 
 \end{frame}
 
 
@@ -93,34 +92,50 @@ GET IT IN HERE
 \end{frame}
 
 
+
+
 \section{Neural Networks}
 % príkaz \ssection by vytvoril zvláštný slajd s názvom časti - v krátkych prezentáciách to prekáža, lebo oberá o čas
 
-\begin{frame}[fragile=singleslide]\frametitle{Neural Networks}
-\begin{itemize}
-\item Odrážky na prvej úrovni
-\item Môže ich byť viac
-	\begin{itemize}
-	\item Toto je už druhá úroveň
-	\item Ďalšia odrážka
-	\end{itemize}
-\item Pokračuje prvá úroveň
-\end{itemize}
+\begin{frame}[fragile=singleslide]
+\frametitle{Neural Networks}
+\begin{columns}
+    \column{0.4\textwidth}
+    \begin{itemize}
+        \item Brain resemblance
+        \item Made out of layers
+        \begin{itemize}
+            \item Input
+            \item Hidden
+            \item Output
+        \end{itemize}
+        \item Requires lot of data to be trained
+    \end{itemize}
+    \column{0.6\textwidth}
+    \begin{figure}
+        \includegraphics[width=\textwidth]{Images/neural-network.png} % Replace with the path to your image file
+        \caption{Layers of a Neural Network \cite{GAO2020409}}
+    \end{figure}
+\end{columns}
 \end{frame}
-
 
 
 \section{Two Towers Neural Network}
 
 \begin{frame}[fragile=singleslide]\frametitle{Two Towers Neural Network}
-\begin{itemize}
-\item Nejaký text
-\item Ďalší text -- \emph{zvýraznený text}
-\item \emp{Kľúčová poznámka} % príkaz definovaný v preambule
-
-% odrážka s odkazom na zdroj:
-\item Bol použitý balík beamer\footcite{\url{https://tug.ctan.org/macros/latex/contrib/beamer/doc/beameruserguide.pdf}}
-\end{itemize}
+\begin{columns}
+    \column{0.4\textwidth}
+    \begin{itemize}
+        \item Visual Data analysis
+        \item Kernels (filters)
+        \item \emp{Learns Patterns} 
+    \end{itemize}
+    \column{0.6\textwidth}
+    \begin{figure}
+        \includegraphics[width=\textwidth]{Images/kernels.png} % Replace with the path to your image file
+        \caption{Kernels of AlexNet’s first convolutional layer \cite{shehata2016using}}
+    \end{figure}
+\end{columns}
 \end{frame}
 
 \section{Convolutional Neural Networks}
@@ -195,6 +210,12 @@ void na_druhu(int i) {
 \end{itemize}
 \end{frame}
 
+
+\begin{frame}[fragile=singleslide]
+\frametitle{References}
+\bibliographystyle{plain}
+\bibliography{sources} % Ensure this matches your .bib file name
+\end{frame}
 
 \end{document}
 
