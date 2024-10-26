@@ -32,12 +32,157 @@
 
 \maketitle
 
-\input{abstract}
-\input{introduciton}
-\input{applications}
-\input{nn}
-\input{future}
-\input{conclusion}
+\begin{abstract}
+The most important currency in the world of social media is attention. The better the recommended content is, the more time people spend on the platform. Individual platforms try to improve their strategies every day. People spend hours scrolling on social media daily. That's why these applications need to develop an efficient recommendation system. In this paper I'll describe recommendation system algorithms, image classification algorithms and how a recommendation system works in general based on neural networks.  I'll also describe real life implementations from social media technology giants such as Instagram or Twitter published on their blogs. 
+\end{abstract}
+
+
+\section{Introduction} \label{introduction}
+
+Methods of recommending content include collaborative filtering \ref{applications/collaborative-filtering}, content-based filtering \ref{applications/content-based-filtering}, and machine learning algorithms.\cite{10142790} This paper tries to explain and compare convolutional neural networks \ref{nn} used to recommend images on social media.
+
+Most large corporations remain closed-source, keeping competition on the internet. With a few exceptions, with the the recent change of X (Twitter) going open-source. 
+
+
+\section{Applications} \label{applications}
+
+Implementations of neural networks \ref{nn} (sometimes referred to as the black box) have been used for decades. The goal is to recommend visually similar images to those, which has user interacted with. Furthermore, this system can recommend advertisements which translate into revenue for the social platform. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\linewidth]{Diagrams/architecture.pdf}
+    \caption{Proposed architecture for content based image recommendation system}
+    \label{fig:proposed-alogrithm}
+\end{figure}
+
+One of the main challenges in recommendation systems is recommending posts to a new users, who cannot be scored against existing posts. Such a problem is called ‘Cold Start' \ref{cold-start} problem. \cite{10373857} Similar problem rises for recommending new posts to users.
+
+\subsection{Content Based Filtering}\label{applications/content-based-filtering}
+
+This type of filtering uses machine learning to make sure people are always seeing content that is the most interesting and relevant to them. \cite{ig-new-content} The filtering is based on the user and post embedding. The user embedding contains information such as age, gender, profession and their interests collected from their behavioral data. The post embedding contains hashtags, image content representation, and the rating (likes and comments).
+
+Content fltering techniques display item information content as feature vectors and use user profiles to recommend new items to users so that an item whose feature vector resembles the user profile vector can be suggested \cite{esvdascfacsasdicars}
+
+Therefore it's important for the system to collect data about the user. The behavioral data includes historical feedback, like user's recent likes, comments and might include things like time spent looking at a picture or frequency of interaction and other patterns. For example, the user likes to look at motivational images in the morning and something calming in the evening.
+
+The Image Feature Representation is acquired through Convolutional Neural Networks \ref{cnn}
+
+\begin{comment}
+    image content representation
+    is this right?
+    find synonym?
+\end{comment}
+
+\subsection{Collaborative Filtering}\label{applications/collaborative-filtering}
+
+To compare similarity of two accounts, this method calculates the cosine distance or dot product of two accounts. \cite{ig-explore} In experimental comparisons, the cosine similarity function was found to perform better than the dot product function. \cite{10408929} This way, users are filtered into groups of people with the same interests. After you have engaged with content from accounts of a certain group, you will be recommended more content from similar accounts. 
+
+\begin{comment}
+    Formula for both cosine and dot products   
+\end{comment}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{Diagrams/collaborative-filtering.pdf}
+    \caption{Example of account recommendation}
+    \label{fig:collaborative-filtering-diagram}
+\end{figure}
+
+
+\section{Two Tower Neural Networks} \label{nn}
+A typical Neural Network takes in two inputs, In a two towers neural network used in social media recommendation system, one is an user object and another one is a post object.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{Images/single-tower.png}
+    \caption{Tower in Two Towers Neural Network \cite{10.1145/3038912.3052569}}
+    \label{fig:collaborative-filtering-diagram}
+\end{figure}
+
+Above the input layer is the embedding layer; it is a fully
+connected layer that projects the sparse representation to
+a dense vector.  \cite{10.1145/3038912.3052569} \cite{DBLP:journals/corr/abs-1708-05027} To calculate the output of each tower, we use a neural network. A dot or cosine product is then calculated from the outputs of both neural networks.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{Images/neural-network.png}
+    \caption{Hidden Layers in A Typical Neural Network \cite{GAO2020409}}
+    \label{fig:collaborative-filtering-diagram}
+\end{figure}
+
+Between the input and the output of a neural network are layers, each of the layers has a certain amount of neurons. \cite{GAO2020409} The value of the output is calculated from adding weighted values of the previous layer. The same applies for every node of hidden layers. The value of a node $y$ can be calculated with following formula. \cite{9784987} 
+
+\[ y = b + \sum_{i=1}^{n} x_i w_i  \]\
+
+Where $x_i$ is a value previous node and $w_i$ weight associated with it. We calculate sum of weighted values from every single node from previous layer. In the training process some nodes weights will become zero, therefore some nodes can be switched off. Additionally we can introduce a bias $b$ to reduce the error, because it's not affected by the weights. 
+
+\begin{comment}
+    $\begin{bmatrix}
+    1 & 2 & 3\\
+    a & b & c
+    \end{bmatrix} $ is a matrix
+\end{comment}
+
+\subsection{Embedding}
+
+\subsection{Cold Start}\label{cold-start}
+
+When a new user registers on a social platform, the platform doesn't have any history about the user. Hence, it cannot personalize user's timeline. One option could be to initialize the user vector randomly, or find a similar vector to the most popular ones.
+
+An option for creating embeddings of new posts would be analyzing the content features like the photo, description and hastags.
+
+To improve the precision of recommendation of new items, here are a few proposed algorithms. 
+
+\begin{comment}
+
+aTwo tower neural network architecture 
+User embedding
+Post embedding
+embedding = vector
+normalize vector
+dot product of post and user vector
+pre trained embeddings
+
+\end{comment}
+
+\section{Convolutional Neural Networks}\label{cnn}
+Basic Neural Network Concepts apply. \ref{nn} Instead of an input vector, now we have a matrix (an image). Similarly to an elemental neural network, picking a small segment from the input layer, called a filter, creates a point in the next layer. \cite{8609672} This layer is now used as an input for the next layer.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{Images/cnn-layer.png}
+    \caption{Basic CNN model with one layer \cite{8609672}}
+    \label{fig:collaborative-filtering-diagram}
+\end{figure}
+
+The difference between one dimensional neural networks and 2D matrix neural networks is that we can visualise each layer or kernel as an image. Thus we can understand simple convolutional networks better. Some layers are perceived as 3D because of the color depth available.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{Images/kernels.png}
+    \caption{Kernels learned from AlexNet's first convolutional layer.   \cite{shehata2016using}}
+    \label{fig:collaborative-filtering-diagram}
+\end{figure}
+
+The final output layer is a vector with probabilities, every value represents propability of the image being classified in a specific class (eg. cat, dog, bird, etc.)
+
+
+
+\begin{comment}
+\input{CNN/alexnet}
+\input{CNN/vggnet}
+\input{CNN/resnet}
+\input{CNN/googlenet}
+\input{CNN/efficientnet}
+\input{CNN/siamesenetwork}
+\input{CNN/xalgorithm}
+RAPID NET
+
+\end{comment}
+
+\section{Future Use} \label{future}
+
+\section{Conclusion} \label{conclusion} 
 
 
 \bibliography{literatura}
