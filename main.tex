@@ -10,6 +10,7 @@
 \usepackage{graphicx}
 \usepackage{comment}
 \usepackage{amsmath}
+\usepackage{amssymb} 
 \usepackage{url} % príkaz \url na formátovanie URL
 \usepackage{hyperref} % odkazy v texte budú aktívne (pri niektorých triedach dokumentov spôsobuje posun textu)
 
@@ -59,7 +60,7 @@ One of the main challenges in recommendation systems is recommending posts to a 
 
 \subsection{Content Based Filtering}\label{applications/content-based-filtering}
 
-This type of filtering uses machine learning to make sure people are always seeing content that is the most interesting and relevant to them. \cite{ig-new-content} The filtering is based on the user and post embedding. The user embedding contains information such as age, gender, profession and their interests collected from their behavioral data. The post embedding contains hashtags, image content representation, and the rating (likes and comments).
+This type of filtering uses machine learning to make sure people are always seeing content that is the most interesting and relevant to them. \cite{ig-new-content} The filtering is based on the user and post embedding. \ref{embedding} The user embedding contains information such as age, gender, profession and their interests collected from their behavioral data. The post embedding contains hashtags, image content representation, and the rating (likes and comments).
 
 Content fltering techniques display item information content as feature vectors and use user profiles to recommend new items to users so that an item whose feature vector resembles the user profile vector can be suggested \cite{esvdascfacsasdicars}
 
@@ -90,24 +91,26 @@ To compare similarity of two accounts, this method calculates the cosine distanc
 
 
 \section{Two Tower Neural Networks} \label{nn}
-A typical Neural Network takes in two inputs, In a two towers neural network used in social media recommendation system, one is an user object and another one is a post object.
+In social media recommendation systems we use a fine-tuned neural network. Two Towers Neural Network works as a typical neural network \ref{fig:hidden-layers-neural-network}
+Two Towers Neural network usually takes in two inputs, one is a user object, and the other one is a post object.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\linewidth]{Images/single-tower.png}
     \caption{Tower in Two Towers Neural Network \cite{10.1145/3038912.3052569}}
-    \label{fig:collaborative-filtering-diagram}
+    \label{fig:two-towers-neural-network-tower}
 \end{figure}
 
-Above the input layer is the embedding layer; it is a fully
+Above the input layer is the embedding layer \ref{embedding}; it is a fully
 connected layer that projects the sparse representation to
-a dense vector.  \cite{10.1145/3038912.3052569} \cite{DBLP:journals/corr/abs-1708-05027} To calculate the output of each tower, we use a neural network. A dot or cosine product is then calculated from the outputs of both neural networks.
+a dense vector.  \cite{10.1145/3038912.3052569} \cite{DBLP:journals/corr/abs-1708-05027} To calculate the output (prediction score) of each tower, we use a typical neural network hidden layers. \ref{fig:hidden-layers-neural-network} A dot or cosine product is then calculated from the outputs of both neural networks. Which is the final score for an input user and an input post.
+
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\linewidth]{Images/neural-network.png}
     \caption{Hidden Layers in A Typical Neural Network \cite{GAO2020409}}
-    \label{fig:collaborative-filtering-diagram}
+    \label{fig:hidden-layers-neural-network}
 \end{figure}
 
 Between the input and the output of a neural network are layers, each of the layers has a certain amount of neurons. \cite{GAO2020409} The value of the output is calculated from adding weighted values of the previous layer. The same applies for every node of hidden layers. The value of a node $y$ can be calculated with following formula. \cite{9784987} 
@@ -123,14 +126,27 @@ Where $x_i$ is a value previous node and $w_i$ weight associated with it. We cal
     \end{bmatrix} $ is a matrix
 \end{comment}
 
-\subsection{Embedding}
-    This implementation \cite{kirajano_two_tower_recommenders_2021} demonstrates, that using an embedding layer increases the prediction accuracy by more than 60%.
+\subsection{Embedding}\label{embedding}
+Embedding helps the neural network understand concepts such as hashtags and images, by projecting them into a vector. For example the embedding vectors of hashtags \#cat \#pet \#dog would have similar vectors. Which would be different from embedding vectors of hashtags such as \#cooking or \#traveling.
+
+An embedding space is a n-dimensional vector space \(\mathbb{R}^n\). Each dimension is a feature represented by a number. As represented in Figure \ref{fig:embedding-graph}, these spaces can capture complex data and making it accessible for a machine, so it can find similarities.
+
+
+This implementation \cite{kirajano_two_tower_recommenders_2021} demonstrates, that using an embedding layer increases the prediction accuracy by more than 60\%.
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\linewidth]{Diagrams/embedding.pdf}
+    \caption{2D Embedding space for pets}
+    \label{fig:embedding-graph}
+\end{figure}
 
 \subsection{Cold Start}\label{cold-start}
 
-When a new user registers on a social platform, the platform doesn't have any history about the user. Hence, it cannot personalize user's timeline. One option could be to initialize the user vector randomly, or find a similar vector to the most popular ones.
+When a new user registers on a social platform, the platform doesn't have any history about the user. Hence, it cannot personalize user's timeline. One option could be to initialize the user vector randomly \cite{9590668}, or find a similar vector to the most popular ones.
 
-An option for creating embeddings of new posts would be analyzing the content features like the photo, description and hastags.
+An option for creating embeddings of new posts would be analyzing the content features like the photo, description and hashtags.
 
 To improve the precision of recommendation of new items, here are a few proposed algorithms. 
 
@@ -153,7 +169,7 @@ Basic Neural Network Concepts apply. \ref{nn} Instead of an input vector, now we
     \centering
     \includegraphics[width=0.5\linewidth]{Images/cnn-layer.png}
     \caption{Basic CNN model with one layer \cite{8609672}}
-    \label{fig:collaborative-filtering-diagram}
+    \label{fig:cnn-layer}
 \end{figure}
 
 The difference between one dimensional neural networks and 2D matrix neural networks is that we can visualise each layer or kernel as an image. Thus we can understand simple convolutional networks better. Some layers are perceived as 3D because of the color depth available.
@@ -162,7 +178,7 @@ The difference between one dimensional neural networks and 2D matrix neural netw
     \centering
     \includegraphics[width=0.5\linewidth]{Images/kernels.png}
     \caption{Kernels learned from AlexNet's first convolutional layer.   \cite{shehata2016using}}
-    \label{fig:collaborative-filtering-diagram}
+    \label{fig:cnn-kernels}
 \end{figure}
 
 The final output layer is a vector with probabilities, every value represents propability of the image being classified in a specific class (eg. cat, dog, bird, etc.)
