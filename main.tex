@@ -93,7 +93,7 @@ To compare similarity of two accounts, this method calculates the cosine distanc
 
 \section{Two Tower Neural Networks} \label{nn}
 In social media recommendation systems we use a fine-tuned neural network. Two Towers Neural Network works as a typical neural network \ref{fig:hidden-layers-neural-network}
-Two Towers Neural network usually takes in two inputs, one is a user object, and the other one is a post object.
+Two Towers Neural network usually takes in two inputs, one is a user object, and the other one is a post object. This helps us to decide, if the post is a good recommendation for the user.
 
 \begin{figure}[H]
     \centering
@@ -164,7 +164,9 @@ pre trained embeddings
 \end{comment}
 
 \section{Convolutional Neural Networks}\label{cnn}
-Basic Neural Network Concepts apply. \ref{nn} Instead of an input vector, now we have a matrix (an image). Similarly to an elemental neural network, picking a small segment from the input layer, called a filter, creates a point in the next layer. \cite{8609672} This layer is now used as an input for the next layer.
+A Convolutional Neural Network is used to classify images into categories. The fundamental difference between a Two Towers Neural is, that it only uses a single block of hidden layers. Basic Neural Network Concepts apply. \ref{nn}
+
+Instead of an input vector, now we have a matrix (an image). Similarly to an elemental neural network, picking a small segment from the input layer, called a filter or a kernel, creates a point in the next layer. \cite{8609672} This layer is now used as an input for the next layer.
 
 \begin{figure}[H]
     \centering
@@ -173,7 +175,6 @@ Basic Neural Network Concepts apply. \ref{nn} Instead of an input vector, now we
     \label{fig:cnn-layer}
 \end{figure}
 
-The difference between one dimensional neural networks and 2D matrix neural networks is that we can visualise each layer or kernel as an image. Thus we can understand simple convolutional networks better. Some layers are perceived as 3D because of the color depth available.
 
 The final output layer is a vector with probabilities, every value represents propability of the image being classified in a specific class (eg. cat, dog, bird, etc.)
 
@@ -211,9 +212,6 @@ The difference between one dimensional neural networks and 2D matrix neural netw
     \caption{Kernels learned from AlexNet's first convolutional layer.   \cite{shehata2016using}}
     \label{fig:cnn-kernels}
 \end{figure}
-
-The final output layer is a vector with probabilities, every value represents propability of the image being classified in a specific class (eg. cat, dog, bird, etc.)
-
 
 
 \begin{comment}
