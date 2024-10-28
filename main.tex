@@ -56,6 +56,7 @@ Implementations of neural networks \ref{nn} (sometimes referred to as the black 
     \label{fig:proposed-alogrithm}
 \end{figure}
 
+The proposed Algorithm uses a Convolutional Neural Network \ref{cnn} to create image interpretation for one of the tower's embedding, along with other crucial post data, such as caption or hashtags. The second tower's embedding contains the user data such as their behavioral data. The Two Towers Neural Network \ref{nn} then calculates the similarity between the post and user to determine if it's a good recommendation. This system can be easily used in Content Based Filtering. \ref{applications/content-based-filtering}
 One of the main challenges in recommendation systems is recommending posts to a new users, who cannot be scored against existing posts. Such a problem is called ‘Cold Start' \ref{cold-start} problem. \cite{10373857} Similar problem rises for recommending new posts to users.
 
 \subsection{Content Based Filtering}\label{applications/content-based-filtering}
