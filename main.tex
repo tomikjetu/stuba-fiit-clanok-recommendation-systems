@@ -57,13 +57,14 @@ Implementations of neural networks \ref{nn} (sometimes referred to as the black 
 \end{figure}
 
 The proposed Algorithm uses a Convolutional Neural Network \ref{cnn} to create image interpretation for one of the tower's embedding, along with other crucial post data, such as caption or hashtags. The second tower's embedding contains the user data such as their behavioral data. The Two Towers Neural Network \ref{nn} then calculates the similarity between the post and user to determine if it's a good recommendation. This system can be easily used in Content Based Filtering. \ref{applications/content-based-filtering}
+
 One of the main challenges in recommendation systems is recommending posts to a new users, who cannot be scored against existing posts. Such a problem is called ‘Cold Start' \ref{cold-start} problem. \cite{10373857} Similar problem rises for recommending new posts to users.
 
 \subsection{Content Based Filtering}\label{applications/content-based-filtering}
 
 This type of filtering uses machine learning to make sure people are always seeing content that is the most interesting and relevant to them. \cite{ig-new-content} The filtering is based on the user and post embedding. \ref{embedding} The user embedding contains information such as age, gender, profession and their interests collected from their behavioral data. The post embedding contains hashtags, image content representation, and the rating (likes and comments).
 
-Content fltering techniques display item information content as feature vectors and use user profiles to recommend new items to users so that an item whose feature vector resembles the user profile vector can be suggested \cite{esvdascfacsasdicars}
+Content filtering techniques display item information content as feature vectors and use user profiles to recommend new items to users so that an item whose feature vector resembles the user profile vector can be suggested \cite{esvdascfacsasdicars}
 
 Therefore it's important for the system to collect data about the user. The behavioral data includes historical feedback, like user's recent likes, comments and might include things like time spent looking at a picture or frequency of interaction and other patterns. For example, the user likes to look at motivational images in the morning and something calming in the evening.
 
@@ -171,7 +172,7 @@ Instead of an input vector, now we have a matrix (an image). Similarly to an ele
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.5\linewidth]{Images/cnn-layer.png}
-    \caption{Basic CNN model with one layer \cite{8609672}}
+    \caption{Typical CNN model with one layer \cite{8609672}}
     \label{fig:cnn-layer}
 \end{figure}
 
