@@ -74,7 +74,7 @@
 \title{Deep Learning Algorithms in Image Recommendation Systems
 }
 
-\date{\footnotesize the 2nd November 2024}
+\date{\footnotesize November 4th 2024}
 
 \begin{document}
 
@@ -85,7 +85,7 @@
 
 \begin{frame}[fragile=singleslide]\frametitle{Motivation}
 \begin{center}
-Imagine a computer, that looks at an image and can tell if you'll like it. That's what Convolutional Networks with Two Towers Neural Network achieve. 
+Imagine a computer, that looks at an image and can tell if you'll like it. That's what Convolutional Neural Networks with Two Towers Neural Network achieve. 
 \end{center}
 \end{frame}
 
@@ -131,8 +131,8 @@ Imagine a computer, that looks at an image and can tell if you'll like it. That'
     \column{0.4\textwidth}
     \begin{itemize}
         \item Embedding Layer
-        \item Dot product of two predictions
         \item Hidden Layers based on Neural Network
+        \item Dot product of two predictions
     \end{itemize}
     \column{0.6\textwidth}
     \begin{figure}
@@ -197,6 +197,36 @@ Imagine a computer, that looks at an image and can tell if you'll like it. That'
 
 
 \section{Use Case}
+
+\begin{frame}{Main Differences}
+
+\begin{table}[h!]
+\centering
+\caption{Two-Tower Neural Network vs. Convolutional Neural Network}
+\renewcommand{\arraystretch}{1.5} % Adjust the value to increase space
+\scriptsize % Reduce font size
+\begin{tabular}{|p{4cm}|p{4cm}|p{4cm}|} % Adjust column widths as needed
+\hline
+\textbf{} & \textbf{Two-Tower Neural Network} & \textbf{Convolutional Neural Network} \\
+\hline
+\textbf{Architecture} & Two separate neural networks (towers) & Convolutional layers \\
+\hline
+\textbf{Use Case} & Recommendation systems & Image recognition, classification \\
+\hline
+\textbf{Data Processing} & Processes embeddings in parallel & Processes data sequentially \\
+\hline
+\textbf{Memory} & Typically no memory & Can have memory with RNNs \\
+\hline
+\textbf{Training} & Optimizes embeddings for similarity & Backpropagation with convolutional layers \\
+\hline
+\end{tabular}
+\label{tab:comparison}
+\end{table}
+
+
+    
+\end{frame}
+
 \begin{frame}[fragile=singleslide]\frametitle{Use Case}
 \begin{columns}
     \column{0.5\textwidth}
