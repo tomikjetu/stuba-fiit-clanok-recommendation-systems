@@ -1,4 +1,4 @@
-\documentclass{beamer}
+\documentclass[aspectratio=169]{beamer}
 
 \usetheme{AnnArbor}
 
@@ -14,6 +14,7 @@
 \usepackage{url}
 
 \usepackage{listings}
+\usepackage{amssymb} 
 
 \lstset{language=C++,basicstyle=\fontsize{8}{9.6}\selectfont,showstringspaces=false,columns=fullflexible,identifierstyle=\ttfamily,keywordstyle=\bfseries,showstringspaces=false,columns=fullflexible}
 %\lstset{language=C,basicstyle=\fontsize{10.5}{12.6}\selectfont,identifierstyle=\ttfamily,keywordstyle=\bfseries,showstringspaces=false,columns=fixed}
@@ -73,7 +74,7 @@
 \title{Deep Learning Algorithms in Image Recommendation Systems
 }
 
-\date{\footnotesize 24. november 2024}
+\date{\footnotesize the 2nd November 2024}
 
 \begin{document}
 
@@ -82,8 +83,10 @@
 \end{frame}
 
 
-\begin{frame}[fragile=singleslide]\frametitle{Abstract}
+\begin{frame}[fragile=singleslide]\frametitle{Motivation}
+\begin{center}
 Imagine a computer, that looks at an image and can tell if you'll like it. That's what Convolutional Networks with Two Towers Neural Network achieve. 
+\end{center}
 \end{frame}
 
 
@@ -122,7 +125,61 @@ Imagine a computer, that looks at an image and can tell if you'll like it. That'
 
 \section{Two Towers Neural Network}
 
+
 \begin{frame}[fragile=singleslide]\frametitle{Two Towers Neural Network}
+    \begin{columns}
+    \column{0.4\textwidth}
+    \begin{itemize}
+        \item Embedding Layer
+        \item Dot product of two predictions
+        \item Hidden Layers based on Neural Network
+    \end{itemize}
+    \column{0.6\textwidth}
+    \begin{figure}
+        \includegraphics[width=\textwidth]{Images/single-tower.png} % Replace with the path to your image file
+        \caption{Tower in Two Towers Neural Network \cite{10.1145/3038912.3052569}}
+    \end{figure}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]\frametitle{Embedding}
+\begin{columns}
+    \column{0.5\textwidth}
+    \begin{itemize}
+        \item \(\mathbb{R}^n\) Vector space (Embedding space)
+        \item Helps TTNN understand complex concepts
+        \item Reduces Dimensionality, captures essential features
+    \end{itemize}
+    \column{0.5\textwidth}
+    \begin{figure}
+        \includegraphics[width=\textwidth]{Images/embedding.png} % Replace with the path to your image file
+        \caption{2D Embedding Space}
+    \end{figure}
+\end{columns}
+\end{frame}
+
+% urobit z toho obrazku png a orezat ho
+
+
+\section{Convolutional Neural Networks}
+\begin{frame}[fragile=singleslide]\frametitle{Convolutional Neural Networks}
+\begin{columns}
+    \column{0.3\textwidth}
+    \begin{itemize}
+        \item Image Clasification
+        \item 2D Data (Matrixes)
+        \item Efficient feature extraction
+    \end{itemize}
+    \column{0.7\textwidth}
+    \begin{figure}
+        \includegraphics[width=\textwidth]{Images/cnn-layers.png}
+        \caption{Typical CNN model layers \cite{9731294}}
+    \end{figure}
+\end{columns}
+
+\end{frame}
+
+\begin{frame}[fragile=singleslide]\frametitle{Filters}
 \begin{columns}
     \column{0.4\textwidth}
     \begin{itemize}
@@ -138,88 +195,58 @@ Imagine a computer, that looks at an image and can tell if you'll like it. That'
 \end{columns}
 \end{frame}
 
-\section{Convolutional Neural Networks}
 
-\begin{frame}[fragile=singleslide]\frametitle{Convolutional Neural Networks}
-%\includegraphics[scale=.35]{diagram.pdf}
-% pridajte vlastný obrázok a zrušte znák % pred príkazom \includegraphics vo formáte PDF prípadne PNG alebo JPG
-% scale určuje veľkosť obrázku
-
-{\tiny Nejaká poznámka k obrázku, možno zdroj\ldots}
-\end{frame}
-
-
-\begin{frame}[fragile=singleslide]\frametitle{Zvýraznenie syntaxe}
-\begin{itemize}
-\item Na zvýraznenie syntaxe stačí použiť balík listings so správne nastaveným programovacím jazykom
-\begin{lstlisting}
-int na_druhu(int i) {
-   return i * i;
-}
-
-int main() {
-   printf("%d", na_druhu(118));
-   return 0;
-}
-\end{lstlisting}
-
-\item Jazyk C++ je ešte zaujímavejší: je multiparadigmový\footcite{\url{J. O. Coplien. Multi-Paradigm Design for C++. Addison-Wesley, 1998.}}
-\end{itemize}
-\end{frame}
-
-
-\begin{frame}[fragile=singleslide]\frametitle{Rámiky}
-\begin{poznamka}
-Text možno uviesť v rámiku
-\end{poznamka}
-
-\begin{itemize}
-\item Program
-
-\begin{program}
-\begin{lstlisting}
-void main() {
-   printf("%d", na_druhu(118));
-}
-
-void na_druhu(int i) {
-   return i * i;
-}
-\end{lstlisting}
-\end{program}
-
-\item Výstup
-\begin{vystup}
-\begin{lstlisting}
-13924
-\end{lstlisting}
-\end{vystup}
-
-\end{itemize}
+\section{Use Case}
+\begin{frame}[fragile=singleslide]\frametitle{Use Case}
+\begin{columns}
+    \column{0.5\textwidth}
+    \begin{itemize}
+        \item Image Recommendation Systems
+        \item CNN output fed into TTNN's Embedding
+        \item Enhances personalized user experience
+    \end{itemize}
+    \column{0.5\textwidth}
+    \begin{figure}
+        \includegraphics[width=\textwidth]{Images/architecture.pdf} 
+        \caption{Proposed content based image recommendation system architecture}
+    \end{figure}
+\end{columns}
 \end{frame}
 
 
 
-\section*{Zhodnotenie a ďalšia práca}
+\section {Conclusion and Future Work}
 % hviezdička zabezpečí, aby sa táto časť neocitla v prehľade prezentácie - každá prezentácia má zhodnotenie a prehľad by sa tým zbytočne zahlcoval
 
-\begin{frame}[fragile=singleslide]\frametitle{Zhodnotenie a ďalšia práca}
-\begin{itemize}
-\item Každá prezentácia musí byť nejako uzavretá
-\item Ale vždy je čo robiť ďalej\ldots{}
-\end{itemize}
+\begin{frame}[fragile=singleslide]\frametitle{Conclusion and Future Work}
+   \begin{center}
+        \textbf{Tomáš Kordoš} \\
+        \textit{xkordost@stuba.sk} \\
+        \textit{hello@tomikjetu.me}
+    \end{center}
+    \vspace{4em}
+    \begin{columns}
+        \column{0.5\textwidth}
+        \begin{itemize}
+            \item Typical Neural Networks
+            \item Importance of Two Towers Neural Network
+            \item Convolutional Neural Networks implementation
+        \end{itemize}
+        \column{0.5\textwidth}
+        \begin{itemize}
+            \item Building a Neural Network
+            \item Working with CNN
+            \item Building a Game
+        \end{itemize}
+    \end{columns}   
 \end{frame}
 
 
-\begin{frame}[fragile=singleslide]
-\frametitle{References}
+
+
+\section{References}
 \bibliographystyle{plain}
-\bibliography{sources} % Ensure this matches your .bib file name
-\end{frame}
+\bibliography{sources} 
+
 
 \end{document}
-
-
-
-
-Text \end{document} za príkazom \end{document} LaTeX ignoruje, takže tu môžete odkladať veci (aj celé slajdy), ktoré nechcete vymazať, lebo ich ešte možno budete potrebovať, avšak ich v danom momente nechcete mať v slajdoch.
