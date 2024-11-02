@@ -34,20 +34,23 @@
 \maketitle
 
 \begin{abstract}
-The most important currency in the world of social media is attention. The better the recommended content is, the more time people spend on the platform. Individual platforms try to improve their strategies every day. People spend hours scrolling on social media daily. That's why these applications need to develop an efficient recommendation system. In this paper I'll describe recommendation system algorithms, image classification algorithms and how a recommendation system works in general based on neural networks and their fundamentals. As well as how they work together in a social media recommendation system environment.  I'll also describe real life implementations from social media technology giants such as Instagram or Twitter published on their blogs. Let's see how computers understand images, and how they use this data to effectively recommend them to users in real time.
+The most important currency in the world of social media is attention. The better the recommended content is, the more time people spend on the platform. Individual platforms try to improve their strategies every day. People spend hours scrolling on social media daily. That's why these applications need to develop an efficient recommendation system. This paper thoroughly, however simplistically describes recommendation system algorithms. An overview of image classification algorithms implemented with recommendation systems, and how they work, based on neural networks and their fundamentals. As well as how they work together in a social media recommendation system environment.  This paper describes real life implementations from social media technology giants such as Instagram and X (Twitter) published on their blogs. Let's see how computers understand images, and how they use this data to effectively recommend them to users in real time. The aim of this paper is to introduce the most prominent algorithms, presented clearly, as well as explore the mathematics behind these algorithms. 
 \end{abstract}
 
 
 \section{Introduction} \label{introduction}
 
-Methods of recommending content include collaborative filtering \ref{applications/collaborative-filtering}, content-based filtering \ref{applications/content-based-filtering}, and machine learning algorithms.\cite{10142790} This paper tries to explain convolutional neural networks \ref{nn} used to recommend images on social media using two towers neural network for recommendations. The example scenario in this paper is recommending an image post for a user he might like. 
+Methods of recommending content include collaborative filtering \ref{applications/collaborative-filtering}, content-based filtering \ref{applications/content-based-filtering} implemented using machine learning algorithms.\cite{10142790} This paper tries to explain convolutional neural networks \ref{tnn} used to recommend visually and contextually similar image posts on social media using two towers neural network for recommendations. The example scenario in this paper is recommending an image post for a user he might like.
 
-Most large corporations remain closed-source, keeping competition on the internet. With a few exceptions, with the the recent change of X (Twitter) going open-source. 
+Recommendation systems are being actively researched in China, consequently a significant number of citations in this paper are derived from Chinese research 
+publications. Most large corporations remain closed-source, keeping competition on the internet. With a few exceptions, with the the recent change of X going open-source. 
 
+One of the largest problems in this sector is the Cold Start Problem 
+\ref{cold-start} \cite{10373857}. As well as generating training data for neural networks is challenging, because the results need to be general for all users, however every user has unique preferences unknown to the pre-trainer. Simply, there is no "Ground Truth". \cite{kirajano_two_tower_recommenders_2021}
 
 \section{Applications} \label{applications}
 
-Implementations of neural networks \ref{nn} (sometimes referred to as the black box) have been used for decades. The goal is to recommend visually similar images to those, which has user interacted with. Furthermore, this system can recommend advertisements which translate into revenue for the social platform. 
+Implementations of neural networks \ref{nn} (sometimes referred to as the black box) have been used for decades. The goal of (image post) recommendation systems is to recommend visually similar images to those, which has user interacted with. \ref{applications/content-based-filtering} Furthermore, this system could recommend appropriate advertisements which translate into revenue for the social platform. 
 
 \begin{figure}[H]
     \centering
@@ -56,19 +59,18 @@ Implementations of neural networks \ref{nn} (sometimes referred to as the black 
     \label{fig:proposed-alogrithm}
 \end{figure}
 
-The proposed Algorithm uses a Convolutional Neural Network \ref{cnn} to create image interpretation for one of the tower's embedding, along with other crucial post data, such as caption or hashtags. The second tower's embedding contains the user data such as their behavioral data. The Two Towers Neural Network \ref{nn} then calculates the similarity between the post and user to determine if it's a good recommendation. This system can be easily used in Content Based Filtering. \ref{applications/content-based-filtering}
+The proposed Algorithm uses a Convolutional Neural Network \ref{cnn} to create image interpretation for one of the tower's embeddings, along with other crucial post data, such as caption or hashtags. The second tower's embedding contains the user data such as their historical behavioral data. The Two Towers Neural Network \ref{tnn} then calculates the similarity between the post and user to determine if it's a good recommendation. This system can be easily used in Content Based Filtering. \ref{applications/content-based-filtering}
 
 One of the main challenges in recommendation systems is recommending posts to a new users, who cannot be scored against existing posts. Such a problem is called ‘Cold Start' \ref{cold-start} problem. \cite{10373857} Similar problem rises for recommending new posts to users.
 
 \subsection{Content Based Filtering}\label{applications/content-based-filtering}
 
-This type of filtering uses machine learning to make sure people are always seeing content that is the most interesting and relevant to them. \cite{ig-new-content} The filtering is based on the user and post embedding. \ref{embedding} The user embedding contains information such as age, gender, profession and their interests collected from their behavioral data. The post embedding contains hashtags, image content representation, and the rating (likes and comments).
+This type of filtering uses machine learning to make sure people are always seeing content that is the most interesting and relevant to them. \cite{ig-new-content} The filtering is based on the user and post embedding. \ref{embedding} The user embedding contains information such as age, gender, profession and their interests collected from their behavioral data. The post embedding contains the content creator data, hashtags, image content representation \ref{cnn}, and the rating (likes and comments). The dot product is then calculated \ref{dot-product}
 
 Content filtering techniques display item information content as feature vectors and use user profiles to recommend new items to users so that an item whose feature vector resembles the user profile vector can be suggested \cite{esvdascfacsasdicars}
 
 Therefore it's important for the system to collect data about the user. The behavioral data includes historical feedback, like user's recent likes, comments and might include things like time spent looking at a picture or frequency of interaction and other patterns. For example, the user likes to look at motivational images in the morning and something calming in the evening.
 
-The Image Feature Representation is acquired through Convolutional Neural Networks \ref{cnn}
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\linewidth]{Diagrams/content-filtering.pdf}
@@ -76,28 +78,40 @@ The Image Feature Representation is acquired through Convolutional Neural Networ
     \label{fig:content-filtering-diagram}
 \end{figure}
 
-\begin{comment}
-    image content representation
-    is this right?
-    find synonym?
-\end{comment}
+The diagram \ref{fig:content-filtering-diagram} displays the process of content-based filtering for account recommendation on image social media platform. The user initially interacts with an influencer posting pet photos. 
+The Image Feature Representation is acquired through a Convolutional Neural Network \ref{cnn}. The system \ref{tnn} compares multiple images until one, or multiple sufficient matches are found. The user is then recommended similar images or influencers who also post pet photos. 
 
 \subsection{Collaborative Filtering}\label{applications/collaborative-filtering}
 
-To compare similarity of two accounts, this method calculates the cosine distance or dot product of two accounts. \cite{ig-explore} In experimental comparisons, the cosine similarity function was found to perform better than the dot product function. \cite{10408929} This way, users are filtered into groups of people with the same interests. After you have engaged with content from accounts of a certain group, you will be recommended more content from similar accounts. 
+To compare similarity of two accounts, this method calculates dot product of two accounts. \ref{dot-product} \cite{ig-explore}  This way, users are filtered into groups of people with the same interests.
 
 \begin{comment}
-    Formula for both cosine and dot products   
+    diagram
 \end{comment}
 
+After a user interacts with posts that people from a certain group engage with, the user will be added to that group. All of the users from the group will be recommended the same, or similar content.
+
 The group can be formed by geographical data. This approach is called Demographic filtering. \cite{9972677} It's common to use both collaborative and content-based filtering. The combination of two or more filtering methods is called Hybrid Filtering. \cite{9972677}
+
+
+\section {Typical Neural Network} \label {nn}
+
 \begin{figure}[H]
     \centering
+    \includegraphics[width=1\linewidth]{Images/neural-network.png}
+    \caption{Hidden Layers in A Typical Neural Network \cite{GAO2020409}}
+    \label{fig:hidden-layers-neural-network}
 \end{figure}
 
+Between the input and the output of a neural network are layers, each of the layers has a certain amount of neurons. \cite{GAO2020409} The value of the output is calculated from adding weighted values of the previous layer. The same applies for every node of hidden layers. The value of a node $a$ can be calculated with following formula. \cite{9784987} 
 
-\section{Two Tower Neural Networks} \label{nn}
-In social media recommendation systems we use a fine-tuned neural network. Two Towers Neural Network works as a typical neural network \ref{fig:hidden-layers-neural-network}
+\[ a = b + \sum_{i=1}^{n} x_i w_i  \]\
+
+Where $x_i$ is a value previous node and $w_i$ weight associated with it. We calculate sum of weighted values from every single node from previous layer. In the training process some nodes weights will become zero, therefore some nodes can be switched off. Additionally we can introduce a bias $b$ to reduce the error, because it's not affected by the weights. 
+
+
+\section{Two Tower Neural Networks} \label{tnn}
+In social media recommendation systems we use a fine-tuned neural network. Two Towers Neural Network works as a typical neural network \ref{nn}
 Two Towers Neural network usually takes in two inputs, one is a user object, and the other one is a post object. This helps us to decide, if the post is a good recommendation for the user.
 
 \begin{figure}[H]
@@ -109,28 +123,7 @@ Two Towers Neural network usually takes in two inputs, one is a user object, and
 
 Above the input layer is the embedding layer \ref{embedding}; it is a fully
 connected layer that projects the sparse representation to
-a dense vector.  \cite{10.1145/3038912.3052569} \cite{DBLP:journals/corr/abs-1708-05027} To calculate the output (prediction score) of each tower, we use a typical neural network hidden layers. \ref{fig:hidden-layers-neural-network} A dot or cosine product is then calculated from the outputs of both neural networks. Which is the final score for an input user and an input post.
-
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\linewidth]{Images/neural-network.png}
-    \caption{Hidden Layers in A Typical Neural Network \cite{GAO2020409}}
-    \label{fig:hidden-layers-neural-network}
-\end{figure}
-
-Between the input and the output of a neural network are layers, each of the layers has a certain amount of neurons. \cite{GAO2020409} The value of the output is calculated from adding weighted values of the previous layer. The same applies for every node of hidden layers. The value of a node $y$ can be calculated with following formula. \cite{9784987} 
-
-\[ y = b + \sum_{i=1}^{n} x_i w_i  \]\
-
-Where $x_i$ is a value previous node and $w_i$ weight associated with it. We calculate sum of weighted values from every single node from previous layer. In the training process some nodes weights will become zero, therefore some nodes can be switched off. Additionally we can introduce a bias $b$ to reduce the error, because it's not affected by the weights. 
-
-\begin{comment}
-    $\begin{bmatrix}
-    1 & 2 & 3\\
-    a & b & c
-    \end{bmatrix} $ is a matrix
-\end{comment}
+a dense vector.  \cite{10.1145/3038912.3052569} \cite{DBLP:journals/corr/abs-1708-05027} To calculate the output (prediction score) of each tower, we use a typical neural network's hidden layers. \ref{fig:hidden-layers-neural-network} A dot product \ref{dot-product} is then calculated from the outputs of both neural networks. Which is the final score for an input user and an input post.
 
 \subsection{Embedding}\label{embedding}
 Embedding helps the neural network understand concepts such as hashtags and images, by projecting them into a vector. For example the embedding vectors of hashtags \#cat \#pet \#dog would have similar vectors. Which would be different from embedding vectors of hashtags such as \#cooking or \#traveling.
@@ -138,15 +131,19 @@ Embedding helps the neural network understand concepts such as hashtags and imag
 An embedding space is a n-dimensional vector space \(\mathbb{R}^n\). Each dimension is a feature represented by a number. As represented in Figure \ref{fig:embedding-graph}, these spaces can capture complex data and making it accessible for a machine, so it can find similarities.
 
 
-This implementation \cite{kirajano_two_tower_recommenders_2021} demonstrates, that using an embedding layer increases the prediction accuracy by more than 60\%.
-
+This implementation \cite{kirajano_two_tower_recommenders_2021} demonstrates, that using a larger embedding layer increases the prediction accuracy. On the other hand, feature amount imbalance in the two towers returns worse results. 
+The baseline model achieved a 20\% accuracy, using simple embeddings of customer ID and product ID. However, it was observed that an imbalance in the number of features between the two towers negatively affected the results. As more features were added to one tower while the other remained sparse, the performance decreased.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\linewidth]{Diagrams/embedding.pdf}
-    \caption{2D Embedding space for pets}
+    \caption{Sample 2D Embedding space for pets}
     \label{fig:embedding-graph}
 \end{figure}
+
+\begin{comment}
+    tu to pdf zrezat, alebo dat na png a zrezat
+\end{comment}
 
 \subsection{Cold Start}\label{cold-start}
 
@@ -157,15 +154,14 @@ An option for creating embeddings of new posts would be analyzing the content fe
 To improve the precision of recommendation of new items, here are a few proposed algorithms. 
 
 \begin{comment}
-
-aTwo tower neural network architecture 
-User embedding
-Post embedding
-embedding = vector
 normalize vector
-dot product of post and user vector
 pre trained embeddings
+\end{comment}
 
+\subsection{Dot Product} \label{dot-product}
+An alternative for dot product is a cosine product. In experimental comparisons, the cosine similarity function was found to perform better than the dot product function. \cite{10408929}
+\begin{comment}
+    Formula for both cosine and dot products  
 \end{comment}
 
 \section{Convolutional Neural Networks}\label{cnn}
