@@ -34,13 +34,13 @@
 \maketitle
 
 \begin{abstract}
-The most important currency in the world of social media is attention. The better the recommended content is, the more time people spend on the platform. Individual platforms try to improve their strategies every day. People spend hours scrolling on social media daily. That's why these applications need to develop an efficient recommendation system. This paper thoroughly, however simplistically describes recommendation system algorithms. An overview of image classification algorithms implemented with recommendation systems, and how they work, based on neural networks and their fundamentals. As well as how they work together in a social media recommendation system environment.  This paper describes real life implementations from social media technology giants such as Instagram and X (Twitter) published on their blogs. Let's see how computers understand images, and how they use this data to effectively recommend them to users in real time. The aim of this paper is to introduce the most prominent algorithms, presented clearly, as well as explore the mathematics behind these algorithms. 
+The most important currency in the world of social media is attention. The better the recommended content is, the more time people spend on the platform. Individual platforms try to improve their strategies every day. People spend hours scrolling on social media daily. That's why these applications need to develop an efficient recommendation system. This paper thoroughly, but straightforward description of recommendation system algorithms. An overview of image classification algorithms implemented with recommendation systems, and how they work, based on neural networks and their fundamentals. As well as how they work together in a social media recommendation system environment.  This paper describes real life implementations from social media technology giants such as Instagram and X (Twitter) published on their blogs. Let's see how computers understand images, and how they use this data to effectively recommend them to users in real time. The aim of this paper is to introduce the most prominent algorithms, presented clearly, as well as explore the mathematics behind these algorithms. 
 \end{abstract}
 
 
 \section{Introduction} \label{introduction}
 
-Methods of recommending content include collaborative filtering \ref{applications/collaborative-filtering}, content-based filtering \ref{applications/content-based-filtering} implemented using machine learning algorithms.\cite{10142790} This paper tries to explain convolutional neural networks \ref{tnn} used to recommend visually and contextually similar image posts on social media using two towers neural network for recommendations. The example scenario in this paper is recommending an image post for a user he might like.
+Methods of recommending content include collaborative filtering \ref{applications/collaborative-filtering}, content-based filtering \ref{applications/content-based-filtering} implemented using machine learning algorithms.\cite{10142790} This paper explains convolutional neural networks \ref{tnn} used to recommend visually and contextually similar image posts on social media using two towers neural network for recommendations. The example scenario in this paper is recommending an image post for a user he might like.
 
 Recommendation systems are being actively researched in China, consequently a significant number of citations in this paper are derived from Chinese research 
 publications. Most large corporations remain closed-source, keeping competition on the internet. With a few exceptions, with the the recent change of X going open-source. 
@@ -55,7 +55,7 @@ Implementations of neural networks \ref{nn} (sometimes referred to as the black 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\linewidth]{Diagrams/architecture.pdf}
-    \caption{Proposed architecture for content based image recommendation system}
+    \caption{Proposed content based image recommendation system architecture}
     \label{fig:proposed-alogrithm}
 \end{figure}
 
@@ -105,9 +105,38 @@ The group can be formed by geographical data. This approach is called Demographi
 
 Between the input and the output of a neural network are layers, each of the layers has a certain amount of neurons. \cite{GAO2020409} The value of the output is calculated from adding weighted values of the previous layer. The same applies for every node of hidden layers. The value of a node $a$ can be calculated with following formula. \cite{9784987} 
 
-\[ a = b + \sum_{i=1}^{n} x_i w_i  \]\
+\begin{equation}
+a = b + \sum_{i=1}^{n} x_i w_i
+\end{equation}
 
-Where $x_i$ is a value previous node and $w_i$ weight associated with it. We calculate sum of weighted values from every single node from previous layer. In the training process some nodes weights will become zero, therefore some nodes can be switched off. Additionally we can introduce a bias $b$ to reduce the error, because it's not affected by the weights. 
+Where $x_i$ is a value previous node and $w_i$ weight associated with it. We calculate sum of weighted values from every single node from previous layer. In the training process some nodes weights will become zero, therefore some nodes can be switched off. Additionally we can introduce a bias $b$ to reduce the error, because it's not affected by the weights. The process of adjusting weights, training, is called backpropagation.
+
+
+\begin{table}[h!]
+    \centering
+    \caption{Two-Tower Neural Network vs. Convolutional Neural Network}
+    \vspace{1em}
+    \renewcommand{\arraystretch}{1.5} % Adjust the value to increase space
+    \scriptsize % Reduce font size
+    \begin{tabular}{|p{4cm}|p{4cm}|p{4cm}|} % Adjust column widths as needed
+    \hline
+    \textbf{} & \textbf{Two-Tower Neural Network} & \textbf{Convolutional Neural Network} \\
+    \hline
+    \textbf{Architecture} & Two separate neural networks (towers) & Convolutional layers \\
+    \hline
+    \textbf{Use Case} & Recommendation systems & Image recognition, classification \\
+    \hline
+    \textbf{Data Processing} & Processes embeddings in parallel & Processes data sequentially \\
+    \hline
+    \textbf{Memory} & Typically no memory & Can have memory with RNNs \\
+    \hline
+    \textbf{Training} & Optimizes embeddings for similarity & Backpropagation with convolutional layers \\
+    \hline
+    \end{tabular}
+    \label{tab:comparison}
+\end{table}
+
+
 
 
 \section{Two Tower Neural Networks} \label{tnn}
@@ -207,6 +236,24 @@ where w is a kernel and x is the input where the kernel applies. The feature map
 
 The difference between one dimensional neural networks and 2D matrix neural networks is that we can visualise each kernel as an image. Thus we can understand simple convolutional networks better.
 
+\begin{comment}
+    zbavit sa prveho obrazku
+    prekreslit druhy obrazok lebo je nekvalitny
+
+    viac clenit toto?
+    sekcia filtre????? asi nie
+    sekcie popularne cnnka
+    
+    \input{CNN/alexnet}
+    \input{CNN/vggnet}
+    \input{CNN/resnet}
+    \input{CNN/googlenet}
+    \input{CNN/efficientnet}
+    \input{CNN/siamesenetwork}
+    \input{CNN/xalgorithm}
+    RAPID NET
+\end{comment}
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.5\linewidth]{Images/kernels.png}
@@ -214,18 +261,7 @@ The difference between one dimensional neural networks and 2D matrix neural netw
     \label{fig:cnn-kernels}
 \end{figure}
 
-
-\begin{comment}
-\input{CNN/alexnet}
-\input{CNN/vggnet}
-\input{CNN/resnet}
-\input{CNN/googlenet}
-\input{CNN/efficientnet}
-\input{CNN/siamesenetwork}
-\input{CNN/xalgorithm}
-RAPID NET
-
-\end{comment}
+\subsection{Popular Convolutional Network Algorithms}
 
 \section{Future Use} \label{future}
 
